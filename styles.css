@@ -1,0 +1,260 @@
+/* Cursor Styles */
+.cursor {
+  position: fixed;
+  width: 15px;
+  height: 15px;
+  background: var(--green);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  mix-blend-mode: difference;
+  z-index: 9999;
+  transition: width 0.3s, height 0.3s;
+}
+
+.cursor-ripple {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--green);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: ripple 0.6s ease-out forwards;
+  z-index: 9998;
+}
+
+@keyframes ripple {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+
+/* Base Styles */
+:root {
+  --navy: #0a192f;
+  --slate: #8892b0;
+  --green: #64ffda;
+  --lightest-navy: #233554;
+  --transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Calibre', 'Segoe UI', system-ui;
+}
+
+body {
+  line-height: 1.6;
+  color: var(--slate);
+  background: var(--navy);
+  cursor: none;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid rgba(136,146,176,0.1);
+}
+
+.sidebar-name {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--green);
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-title {
+  color: #ccd6f6;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  margin-bottom: 2rem;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sidebar-nav a {
+  color: var(--slate);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.sidebar-nav a:hover {
+  color: var(--green);
+}
+
+/* Main Content */
+main {
+  margin-left: 300px;
+}
+
+/* Sections */
+section {
+  padding: 6rem 10%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h2 {
+  color: #ccd6f6;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.professional-journey p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.professional-journey ul {
+  list-style: none;
+  padding-left: 1rem;
+}
+
+.professional-journey li {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 1.1rem;
+}
+
+.professional-journey li:before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--green);
+}
+
+.skills-grid, .projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.skill-card {
+  background: var(--lightest-navy);
+  padding: 2rem;
+  border-radius: 4px;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  filter: brightness(2.1);
+}
+
+.skill-card i {
+  font-size: 2.5rem;
+  color: var(--green);
+  margin-bottom: 1rem;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--green);
+  text-decoration: none;
+  border: 1px solid var(--green);
+  border-radius: 4px;
+  transition: var(--transition);
+  font-size: 1rem;
+}
+
+.cta-btn:hover {
+  background: rgba(100,255,218,0.1); 
+  box-shadow: 0 0 10px var(--green);
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--lightest-navy);
+}
+
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--green);
+  color: var(--navy);
+  border: none;
+  padding: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  transition: var(--transition);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .sidebar .cta-btn {
+    width: auto;
+    padding: 0.75rem 1.5rem;
+    margin: 0 auto;
+    display: inline-flex;
+  }
+
+  .sidebar-nav {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .sidebar-name {
+    font-size: 1.75rem;
+    text-align: center;
+  }
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 2rem 1rem;
+    border-right: none;
+    border-bottom: 1px solid rgba(136,146,176,0.1);
+    display: block !important;
+  }
+
+  main { 
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  section {
+    padding: 4rem 5%;
+    min-height: auto;
+  }
+
+  #navbar {
+    display: none !important;
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 1rem;
+  }
+}
